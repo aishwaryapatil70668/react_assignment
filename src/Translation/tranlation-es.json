@@ -1,0 +1,9 @@
+{
+  "products": "PRODUCTOS",
+  "Pantone_Color_Products": "Productos de color Pantone",
+  "Add_Product": "Agregar producto",
+  "Pantone_Color":"Color Pantone",
+  "Color_name":"Nombre del color",
+  "back":"atrás",
+  "PMS_Info": "El sistema de color Pantone, o PMS, es un sistema de combinación de colores estandarizado, que se usa ampliamente en todo el mundo. Fue diseñado para ayudar a los impresores y diseñadores a especificar y controlar los colores para los proyectos de impresión. El sistema de color Pantone le permite especificar colores que no se pueden mezclar en CMYK tradicional (cian, magenta, amarillo y negro)."
+}

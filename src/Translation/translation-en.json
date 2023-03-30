@@ -1,0 +1,9 @@
+{
+  "products": "PRODUCTS",
+  "Pantone_Color_Products": "Pantone Color Products",
+  "Add_Product": "Add Product",
+  "Pantone_Color":"Pantone Color",
+  "Color_name":"Nombre del color",
+  "back":"back",
+  "PMS_Info":"The Pantone Color System, or PMS, is a standardized color matching system, which is widely used around the world. It was devised to help printers and designers to specify and control colors for printing projects.The Pantone Color System allows you to specify colors that cannot be mixed in traditional CMYK(cyan, magenta, yellow, and black)."
+}
