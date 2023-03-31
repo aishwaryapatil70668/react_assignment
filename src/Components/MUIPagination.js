@@ -1,6 +1,6 @@
 import { Pagination } from '@mui/material';
 import { useContext} from 'react';
-import { ProductDataContext } from "../Context/Context";
+import { ProductDataContext } from "../context/Context";
 const MUIPagination = () => {
     const { pageNumber, setPageNumber } = useContext(ProductDataContext);
     const handlePageChange = (event, page) => {

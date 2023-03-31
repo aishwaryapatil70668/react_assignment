@@ -1,7 +1,7 @@
 import { createContext, useState } from 'react';
 export const ProductDataContext = createContext();
 
-let Context = ({children}) => {
+const Context = ({children}) => {
     const [products, setProductData] = useState([]);
     const [pageNumber, setPageNumber] = useState(1);
     const [language, setlanguage] = useState('en');

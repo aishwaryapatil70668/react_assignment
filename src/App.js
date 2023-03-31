@@ -1,13 +1,13 @@
 import "./App.css";
-import Header from "./Components/Header";
-import MUIPagination from "./Components/MUIPagination";
-import ProductList from "./Components/ProductList";
+import Header from "./components/Header";
+import MUIPagination from "./components/MUIPagination";
+import ProductList from "./components/ProductList";
 import { Routes, Route, Navigate } from "react-router-dom";
-import ProductCard from "./Components/ProductCard";
-import AddProduct from "./Components/AddProduct";
+import ProductCard from "./components/ProductCard";
+import AddProduct from "./components/AddProduct";
 import i18next from "i18next";
 import { useEffect, useState, useContext } from "react";
-import { ProductDataContext } from "./Context/Context";
+import { ProductDataContext } from "./context/Context";
 
 function App() {
   const { language, setlanguage } = useContext(ProductDataContext);

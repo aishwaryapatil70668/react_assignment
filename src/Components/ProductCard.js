@@ -1,17 +1,17 @@
 import { useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Typography } from "@mui/material";
-import { ProductDataContext } from "../Context/Context";
+import { ProductDataContext } from "../context/Context";
 import i18next from "i18next";
 
-let ProductCard = () => {
+const ProductCard = () => {
   const { products } = useContext(ProductDataContext);
   const location = useLocation();
   const prodID = location.state.id;
   console.log("contextProduct", products);
   console.log("uselocation", prodID);
 
-  let filterProduct = products.filter((product) => product.id === prodID);
+  const filterProduct = products.filter((product) => product.id === prodID);
   console.log("filterProduct", filterProduct);
 
   return (

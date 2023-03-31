@@ -8,10 +8,12 @@ import {
   DialogActions,
   DialogContentText,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const SuccessDialog = ({ open, handleModal }) => {
   const handleClose = () => {
     handleModal(false);
+    useNavigate("/");
     return false;
   };
 

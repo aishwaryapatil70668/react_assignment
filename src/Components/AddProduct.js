@@ -4,7 +4,7 @@ import SuccessDialog from "./SuccessDialog";
 import { useForm } from "react-hook-form";
 import i18next from 'i18next';
 
-let AddProduct = () => {
+const AddProduct = () => {
   const [open, setOpen] = useState(false);
   const {
     register,
@@ -64,7 +64,7 @@ let AddProduct = () => {
             label="Year"
             type={"number"}
             name="year"
-            placeholder="Year"
+            placeholder="YYYY"
             {...register("year", { required: "Value is required" })}
             error={Boolean(errors.year)}
             helperText={errors.year?.message}

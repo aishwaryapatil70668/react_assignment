@@ -1,7 +1,7 @@
 import { InputLabel, Select, FormControl, MenuItem } from "@mui/material";
 import { useState, useContext } from "react";
 import i18next from "i18next";
-import { ProductDataContext } from "../Context/Context";
+import { ProductDataContext } from "../context/Context";
 
 const Dropdown = () => {
   const { language, setlanguage } = useContext(ProductDataContext);

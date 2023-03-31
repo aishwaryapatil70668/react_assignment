@@ -8,7 +8,7 @@ import {
   Link,
   Button,
 } from "@mui/material";
-import { ProductDataContext } from "../Context/Context";
+import { ProductDataContext } from "../context/Context";
 import { useNavigate } from "react-router-dom";
 import MUIPagination from "./MUIPagination";
 import i18next from "i18next";
@@ -17,7 +17,7 @@ import styled from "styled-components";
 
 const StyledCard = styled(Card)``;
 
-let ProductList = () => {
+const ProductList = () => {
   const { products, setProductData, pageNumber } =
     useContext(ProductDataContext);
   const navigate = useNavigate();
@@ -42,7 +42,7 @@ let ProductList = () => {
     fetchProducts();
   }, [pageNumber]);
 
-  let handleClick = (id) => {
+  const handleClick = (id) => {
     console.log("routeprops", id);
     navigate("/prodcutCard", { state: { id } });
   };
