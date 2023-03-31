@@ -11,10 +11,9 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const SuccessDialog = ({ open, handleModal }) => {
+  const navigate = useNavigate();
   const handleClose = () => {
-    handleModal(false);
-    useNavigate("/");
-    return false;
+    navigate("/");
   };
 
   return (
