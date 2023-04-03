@@ -1,17 +1,19 @@
 import { Button, Grid, TextField, Box, Typography } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import SuccessDialog from "./SuccessDialog";
 import { useForm } from "react-hook-form";
-import i18next from 'i18next';
+import i18next from "i18next";
+import { ProductDataContext } from "../context/Context";
 
 const AddProduct = () => {
   const [open, setOpen] = useState(false);
+  const { products, setProductData } = useContext(ProductDataContext);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  
+
   const addProduct = async (formData) => {
     const params = {
       method: "post",
@@ -23,13 +25,18 @@ const AddProduct = () => {
         name: formData.name,
         year: formData.year,
         color: formData.color,
-        pantone_value: formData.value,
+        pantone_value: formData.pvalue,
       }),
     };
     console.log("api params", params);
     fetch("https://reqres.in/api/products", params)
       .then((res) => res.json())
-      .then((res) => setOpen(true));
+      .then((res) => {
+        setOpen(true);
+        console.log('apiRes',res);
+        setProductData([...products, { ...res }]);
+        console.log('addProduct',products);
+      });
   };
 
   const onSubmit = (formData) => {
@@ -50,10 +57,10 @@ const AddProduct = () => {
           <TextField
             variant="outlined"
             margin="normal"
-            label="Color Name"
+            label="Pantone Color Name"
             type={"text"}
             name="name"
-            placeholder="Color Name"
+            placeholder="ex. true red"
             {...register("name", { required: "Name is required" })}
             error={Boolean(errors.name)}
             helperText={errors.name?.message}
@@ -68,17 +75,19 @@ const AddProduct = () => {
             {...register("year", { required: "Value is required" })}
             error={Boolean(errors.year)}
             helperText={errors.year?.message}
+            inputProps={{ maxLength: 4 }}
           />
           <TextField
             variant="outlined"
             margin="normal"
-            label="Color"
+            label="HEX Color Name"
             type={"text"}
             name="color"
-            placeholder="Color"
+            placeholder="ex. #c74375"
             {...register("color", { required: "Color is required" })}
             error={Boolean(errors.color)}
             helperText={errors.color?.message}
+            inputProps={{ maxLength: 7 }}
           />
           <TextField
             variant="outlined"
@@ -86,9 +95,10 @@ const AddProduct = () => {
             label="Pantone Value"
             type={"text"}
             name="pvalue"
-            placeholder="Pantone Value"
+            placeholder="ex. 154020"
             {...register("pvalue", { required: "Pantone Value is required" })}
             error={Boolean(errors.pvalue)}
+            inputProps={{ maxLength: 7 }}
             helperText={errors.pvalue?.message}
           />
           <Button

@@ -6,13 +6,12 @@ import {
   CardContent,
   Typography,
   Link,
-  Button,
+  Button
 } from "@mui/material";
 import { ProductDataContext } from "../context/Context";
 import { useNavigate } from "react-router-dom";
 import MUIPagination from "./MUIPagination";
 import i18next from "i18next";
-
 import styled from "styled-components";
 
 const StyledCard = styled(Card)``;
@@ -21,7 +20,7 @@ const ProductList = () => {
   const { products, setProductData, pageNumber } =
     useContext(ProductDataContext);
   const navigate = useNavigate();
-
+  
   const fetchProducts = async () => {
     const params = {
       method: "GET",
@@ -36,7 +35,27 @@ const ProductList = () => {
     );
     const json = await res.json();
     console.log("api data", json.data);
-    setProductData(json.data);
+    console.log("context", products);
+    if (products.length < 6) {
+      setProductData(json.data);
+      console.log("contextdd", json.data);
+    } else {
+      setProductData(json.data);
+    }
+    // else{
+    //   console.log("api data else", json.data);
+    //   setProductData(json.data);
+    // }
+    // fetch(`https://reqres.in/api/products?page=${pageNumber}`, params)
+    //   .then((res) => res.json())
+    //   .then((res) => { setProductData(res);
+    //     // if (res.length === products.length) {
+    //     //   setProductData(res);
+    //     // } else {
+    //     //   console.log("api data", res);
+    //     //   setProductData(res);
+    //     // }
+    //   });
   };
   useEffect(() => {
     fetchProducts();
@@ -44,7 +63,7 @@ const ProductList = () => {
 
   const handleClick = (id) => {
     console.log("routeprops", id);
-    navigate("/prodcutCard", { state: { id } });
+    navigate("/prodcutCard", { state: { id, searchFlag: false } });
   };
   return (
     <>

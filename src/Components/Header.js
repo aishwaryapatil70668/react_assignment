@@ -1,8 +1,17 @@
-import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  TextField,
+  InputAdornment,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Dropdown from "./Dropdown";
 import i18next from "i18next";
+import { useState } from "react";
+import SearchIcon from "@mui/icons-material/Search";
 
 const StyledAppBar = styled(AppBar)`
   position: relative !important;
@@ -11,18 +20,58 @@ const StyledAppBar = styled(AppBar)`
 
 const Header = ({ testid }) => {
   const navigate = useNavigate();
+  const [searchId, setSearchId] = useState("");
   const handleClick = (e) => {
     e.target.id === "add" ? navigate("/AddProduct") : navigate("/");
   };
-  const hasQueryParam = (url) => {
-    console.log(`/${url}`);
-    return url.includes(`/${url}`);
+  const handleChange = (e) => {
+    setSearchId(e.target.value);
+    console.log(e.target.value);
+  };
+  const searchById = (e) => {
+    const params = {
+      method: "GET",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+    };
+    fetch(`https://reqres.in/api/products/${searchId}`, params)
+      .then((res) => res.json())
+      .then((res) => {
+        console.log("res", res);
+        if (res && res.data) {
+          navigate("/prodcutCard", {
+            state: { id: searchId, response: res.data, searchFlag: true },
+          });
+        } else {
+          throw new Error();
+        }
+      })
+      .catch(() => navigate("/ErrorNotFound", { state: { id: searchId } }));
   };
   return (
     <div testid={testid}>
       <StyledAppBar>
         <Toolbar sx={{ backgroundColor: "#004d40" }}>
           <Dropdown></Dropdown>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            value={searchId}
+            name="name"
+            placeholder="Search by id"
+            size="small"
+            onChange={handleChange}
+            sx={{ backgroundColor: "white", borderRadius: 2, marginRight: 1 }}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment>
+                  <SearchIcon sx={{ cursor: "pointer" }} onClick={searchById} />
+                </InputAdornment>
+              ),
+            }}
+          />
           <Button
             id="add"
             size="small"
@@ -32,10 +81,6 @@ const Header = ({ testid }) => {
             onClick={handleClick}
           >
             {i18next.t("Add_Product")}
-          </Button>
-
-          <Button id="cancel" sx={{ color: "white" }} onClick={handleClick}>
-            {i18next.t("back")}
           </Button>
         </Toolbar>
       </StyledAppBar>
