@@ -47,7 +47,7 @@ const Header = ({ testid }) => {
             throw new Error();
           }
         })
-        .catch(() => navigate("/ErrorNotFound", { state: { id: searchId } }));
+        .catch(() => navigate("/Error", { state: { id: searchId } }));
     }
   };
   return (

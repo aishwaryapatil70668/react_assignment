@@ -5,7 +5,7 @@ import ProductList from "./components/ProductList";
 import { Routes, Route, Navigate } from "react-router-dom";
 import ProductCard from "./components/ProductCard";
 import AddProduct from "./components/AddProduct";
-import ErrorNotFound from "./components/ErrorNotFound";
+import Error from "./components/Error";
 import i18next from "i18next";
 import { useEffect, useState, useContext } from "react";
 import { ProductDataContext } from "./context/Context";
@@ -25,7 +25,7 @@ const App = () => {
         <Route exact path="/" element={<ProductList />} />
         <Route exact path="/prodcutCard" element={<ProductCard />} />
         <Route exact path="/AddProduct" element={<AddProduct />} />
-        <Route exact path="/ErrorNotFound" element={<ErrorNotFound />} />
+        <Route exact path="/Error" element={<Error />} />
       </Routes>
     </div>
   );
