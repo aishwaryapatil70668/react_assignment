@@ -34,35 +34,17 @@ const ProductList = () => {
       params
     );
     const json = await res.json();
-    console.log("api data", json.data);
-    console.log("context", products);
-    if (products.length < 6) {
-      setProductData(json.data);
-      console.log("contextdd", json.data);
+    if (products.length > 6) {
+      setProductData(products);
     } else {
       setProductData(json.data);
     }
-    // else{
-    //   console.log("api data else", json.data);
-    //   setProductData(json.data);
-    // }
-    // fetch(`https://reqres.in/api/products?page=${pageNumber}`, params)
-    //   .then((res) => res.json())
-    //   .then((res) => { setProductData(res);
-    //     // if (res.length === products.length) {
-    //     //   setProductData(res);
-    //     // } else {
-    //     //   console.log("api data", res);
-    //     //   setProductData(res);
-    //     // }
-    //   });
   };
   useEffect(() => {
     fetchProducts();
   }, [pageNumber]);
 
   const handleClick = (id) => {
-    console.log("routeprops", id);
     navigate("/prodcutCard", { state: { id, searchFlag: false } });
   };
   return (

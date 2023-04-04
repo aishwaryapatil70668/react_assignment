@@ -28,19 +28,15 @@ const AddProduct = () => {
         pantone_value: formData.pvalue,
       }),
     };
-    console.log("api params", params);
     fetch("https://reqres.in/api/products", params)
       .then((res) => res.json())
       .then((res) => {
         setOpen(true);
-        console.log('apiRes',res);
         setProductData([...products, { ...res }]);
-        console.log('addProduct',products);
       });
   };
 
   const onSubmit = (formData) => {
-    console.log(formData);
     addProduct(formData);
   };
   const handleModal = (openModal) => {

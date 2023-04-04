@@ -26,29 +26,29 @@ const Header = ({ testid }) => {
   };
   const handleChange = (e) => {
     setSearchId(e.target.value);
-    console.log(e.target.value);
   };
   const searchById = (e) => {
-    const params = {
-      method: "GET",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    };
-    fetch(`https://reqres.in/api/products/${searchId}`, params)
-      .then((res) => res.json())
-      .then((res) => {
-        console.log("res", res);
-        if (res && res.data) {
-          navigate("/prodcutCard", {
-            state: { id: searchId, response: res.data, searchFlag: true },
-          });
-        } else {
-          throw new Error();
-        }
-      })
-      .catch(() => navigate("/ErrorNotFound", { state: { id: searchId } }));
+    if (searchId) {
+      const params = {
+        method: "GET",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+      };
+      fetch(`https://reqres.in/api/products/${searchId}`, params)
+        .then((res) => res.json())
+        .then((res) => {
+          if (res && res.data) {
+            navigate("/prodcutCard", {
+              state: { id: searchId, response: res.data, searchFlag: true },
+            });
+          } else {
+            throw new Error();
+          }
+        })
+        .catch(() => navigate("/ErrorNotFound", { state: { id: searchId } }));
+    }
   };
   return (
     <div testid={testid}>

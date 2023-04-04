@@ -6,7 +6,6 @@ const MUIPagination = () => {
     const handlePageChange = (event, page) => {
         setPageNumber(page);
     };
-    console.log('page', pageNumber);
     return (
         <Pagination variant='outlined' sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} count={2}
             page={pageNumber} onChange={handlePageChange} />
